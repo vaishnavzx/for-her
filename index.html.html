@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One year</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1b1026;--ink:#f7e9ee;--muted:#b9a2c0;--rose:#f08fa3;--gold:#f3cf8a;--line:#4a3358;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#fbeef1;--ink:#2a1530;--muted:#7a5a78;--rose:#c2506b;--gold:#a8741a;--line:#e3c3cc}}
+:root[data-theme="light"]{--bg:#fbeef1;--ink:#2a1530;--muted:#7a5a78;--rose:#c2506b;--gold:#a8741a;--line:#e3c3cc}
+:root[data-theme="dark"]{--bg:#1b1026;--ink:#f7e9ee;--muted:#b9a2c0;--rose:#f08fa3;--gold:#f3cf8a;--line:#4a3358}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 1.25rem/1.6 "Cormorant Garamond",Georgia,serif;overflow-x:hidden}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#stk{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#stk span{position:absolute;font-size:1.7rem;opacity:.55;animation:drift linear infinite}
+@keyframes drift{from{transform:translateY(0) rotate(-12deg)}to{transform:translateY(-120vh) rotate(18deg)}}
+main,section,footer{position:relative;z-index:1;text-align:center;padding:0 1.5rem}
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem}
+body.opened #hero{justify-content:flex-end;padding-bottom:12vh}
+h1{font-size:clamp(2.6rem,11vw,5.6rem);font-style:italic;font-weight:600;line-height:1.05;margin:0;max-width:14ch}
+h2{font-size:clamp(1.8rem,6vw,2.8rem);font-style:italic;font-weight:600;margin:0 0 1.5rem;line-height:1.15}
+p{margin:0;color:var(--muted)}
+.nums{display:flex;gap:clamp(.8rem,4vw,2rem);justify-content:center}
+.nums div{display:flex;flex-direction:column;min-width:3.4rem}
+.nums b{font-size:clamp(2rem,9vw,3.6rem);font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1}
+.nums span{font-size:1rem;color:var(--muted)}
+button{font:inherit;font-weight:600;cursor:pointer;border:1.5px solid var(--rose);background:transparent;color:var(--ink);padding:.7rem 2rem;border-radius:999px;transition:background .2s,transform .2s}
+button:hover{background:var(--rose);color:#1b1026}
+button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.after{display:none}
+body.opened .after{display:block}
+.band{padding-top:5.5rem;padding-bottom:2rem;max-width:40rem;margin:0 auto}
+.cute{font-size:2rem;letter-spacing:.6rem}
+#hug{display:block;width:min(100%,448px);image-rendering:pixelated;margin:1.2rem auto .8rem}
+#letter{font-family:Caveat,"Segoe Script",cursive;font-size:clamp(1.45rem,5vw,1.85rem);line-height:1.5;text-align:left;border-left:2px solid var(--rose);padding-left:1.2rem;margin-top:1.5rem;white-space:pre-wrap;min-height:2rem;color:var(--ink)}
+details{border-bottom:1px solid var(--line);text-align:left}
+summary{cursor:pointer;list-style:none;padding:1rem 0;font-size:1.5rem;font-style:italic;font-weight:600;display:flex;gap:.7rem;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"♥";color:var(--rose);font-style:normal;transition:transform .3s}
+details[open] summary::before{transform:scale(1.4) rotate(-12deg)}
+details p{padding:0 0 1.2rem 2rem}
+.breath{width:150px;height:150px;border-radius:50%;margin:2rem auto;border:2px solid var(--rose);background:color-mix(in srgb,var(--rose) 22%,transparent);display:grid;place-items:center;animation:br 8s ease-in-out infinite}
+@keyframes br{0%,100%{transform:scale(.6)}50%{transform:scale(1.1)}}
+.breath i{grid-area:1/1;font-style:italic;animation:tx 8s steps(1) infinite}
+.breath i+i{animation-delay:-4s}
+@keyframes tx{0%{opacity:1}50%{opacity:0}}
+#boost{min-height:3.2rem;margin-top:1.2rem;color:var(--ink);font-style:italic;font-size:1.4rem}
+.promises{text-align:left;display:grid;gap:.8rem}
+.promises label{display:flex;gap:.8rem;align-items:flex-start;cursor:pointer;font-size:1.3rem}
+.promises input{accent-color:var(--rose);width:1.3rem;height:1.3rem;margin-top:.35rem;flex:none}
+#pdone{margin-top:1.2rem;color:var(--ink);font-style:italic}
+.btns{display:flex;gap:1.5rem;justify-content:center;align-items:center;min-height:5rem}
+#yes{background:var(--rose);color:#1b1026}
+#no{transition:none}
+#done{margin-top:1.5rem;font-size:1.6rem;color:var(--ink);font-style:italic}
+
+/* --- JAR OF MEMORIES STYLE --- */
+.jar-wrapper{display:flex;flex-direction:column;align-items:center;margin-top:1rem}
+.glass-jar{width:110px;height:140px;border:3px solid var(--rose);border-radius:18px 18px 36px 36px;position:relative;background:color-mix(in srgb,var(--rose) 12%,transparent);box-shadow:inset 0 0 15px rgba(240,143,163,0.3),0 8px 20px rgba(0,0,0,0.25);cursor:pointer;display:grid;place-items:center;transition:transform .2s ease}
+.glass-jar:hover{transform:scale(1.06) rotate(-2deg)}
+.glass-jar:active{transform:scale(0.95)}
+.jar-lid{position:absolute;top:-12px;width:75px;height:12px;background:var(--gold);border-radius:6px;border:2px solid var(--rose)}
+.jar-stars{font-size:1.8rem;user-select:none;animation:pulseJar 2s infinite ease-in-out}
+@keyframes pulseJar{0%,100%{transform:scale(0.95);opacity:.8}50%{transform:scale(1.08);opacity:1}}
+.memory-card{margin-top:1.5rem;width:100%;min-height:90px;padding:1.2rem 1.5rem;border:2px solid var(--gold);border-radius:16px;background:color-mix(in srgb,var(--bg) 85%,var(--rose));font-family:Caveat,cursive;font-size:clamp(1.3rem,4.5vw,1.65rem);line-height:1.4;color:var(--ink);box-shadow:0 6px 18px rgba(0,0,0,0.2);opacity:0;transform:translateY(10px);transition:all .35s ease;text-align:center}
+.memory-card.show{opacity:1;transform:translateY(0)}
+
+/* --- PINKY PROMISE SIGNATURE PAD STYLE --- */
+.sig-box{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:1rem}
+#sig-canvas{width:100%;max-width:380px;height:180px;border:2px dashed var(--rose);border-radius:16px;background:color-mix(in srgb,var(--bg) 90%,var(--rose));touch-action:none;cursor:crosshair;box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+.sig-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+#sig-seal{background:var(--rose);color:#1b1026}
+#sig-status{font-family:Caveat,cursive;font-size:1.6rem;color:var(--gold);min-height:2.2rem;margin-top:.5rem}
+
+#music-btn{position:fixed;bottom:1rem;right:1rem;z-index:10;font-size:.9rem;padding:.5rem 1rem;background:var(--bg);box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.secret-bear{cursor:pointer;user-select:none}
+footer{padding-top:3rem;padding-bottom:3rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.breath{animation:none}.breath i{animation:none}.breath i+i{display:none}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div id="stk" aria-hidden="true"></div>
+
+<button id="music-btn" hidden>🎵 Play Soft Melody</button>
+
+<main id="hero">
+  <p id="sub"></p>
+  <h1 id="title"></h1>
+  <div id="cd" class="nums"></div>
+  <button id="open" hidden>Open it 🧸</button>
+</main>
+
+<section class="band after">
+  <p>Since 12 October 2025, we have been each other's person for</p>
+  <div id="since" class="nums" style="margin-top:1.2rem"></div>
+  <canvas id="hug" width="64" height="32" aria-label="Two pixel characters walking toward each other and hugging"></canvas>
+  <p>Every hug is a tiny pause button 🫂</p>
+</section>
+
+<section class="band after">
+  <h2>Our Jar of Sweet Memories 🫙✨</h2>
+  <p>Tap the jar to pull out a favorite memory or reason why I love you.</p>
+  <div class="jar-wrapper">
+    <div class="glass-jar" id="memory-jar">
+      <div class="jar-lid"></div>
+      <div class="jar-stars">✨💖🌟</div>
+    </div>
+    <button style="margin-top:1.2rem" id="jar-btn">Pull a Memory 🌟</button>
+    <div id="memory-display" class="memory-card">Tap the jar above to unlock a memory! 💌</div>
+  </div>
+</section>
+
+<section class="band after">
+  <div class="cute" aria-hidden="true">🌸<span class="secret-bear" id="bear-click">🧸</span>🍓</div>
+  <h2>A letter, just for you</h2>
+  <button id="read">Read it 💌</button>
+  <div id="letter" aria-live="polite"></div>
+</section>
+
+<!-- PINKY PROMISE FINGER SIGNING SECTION -->
+<section class="band after">
+  <h2>Our Pinky Promise 🤙✨</h2>
+  <p>Use your finger (or mouse) to sign your initial, draw a heart, or leave your pinky stamp below!</p>
+  <div class="sig-box">
+    <canvas id="sig-canvas"></canvas>
+    <div class="sig-btns">
+      <button id="sig-clear">Clear 🧹</button>
+      <button id="sig-seal">Seal Promise 🤙💖</button>
+    </div>
+    <div id="sig-status">Sign inside the box to lock in our promise...</div>
+  </div>
+</section>
+
+<section class="band after">
+  <h2>Eight things I love about us</h2>
+  <details><summary>You feel like home 🏡</summary><p>Somewhere in this year, quiet evenings with you became my favourite place in the world.</p></details>
+  <details><summary>You stayed through my tears 🥹</summary><p>You saw me at my weakest and never made me feel small. You just stayed.</p></details>
+  <details><summary>We calm each other 🌙</summary><p>Your voice, my silly jokes, and somehow the whole world gets quieter.</p></details>
+  <details><summary>I never have to perform 🫶</summary><p>I can be tired, silly or wrong, and I'm still safe with you.</p></details>
+  <details><summary>We talk things through 💬</summary><p>Even when we disagree, we end up on the same side.</p></details>
+  <details><summary>Your laugh 😊</summary><p>It has fixed more of my bad days than you know.</p></details>
+  <details><summary>We grow together 🌱</summary><p>I like who I'm becoming next to you.</p></details>
+  <details><summary>You're my first call 📞</summary><p>Good news, bad news, no news. It's always you.</p></details>
+</section>
+
+<section class="band after">
+  <h2>When it gets heavy 📚</h2>
+  <p>JEE, boards, endless chapters. Breathe with me for a minute.</p>
+  <div class="breath" aria-hidden="true"><i>breathe in</i><i>breathe out</i></div>
+  <button id="bbtn">I need a boost 🥺</button>
+  <p id="boost" aria-live="polite"></p>
+</section>
+
+<section class="band after">
+  <h2>Our promises for exam season 💪</h2>
+  <div class="promises">
+    <label><input type="checkbox"> We check on each other every single day, even when we're busy.</label>
+    <label><input type="checkbox"> We take breaks, drink water, eat well and sleep like humans.</label>
+    <label><input type="checkbox"> We never compare ourselves to anyone else.</label>
+    <label><input type="checkbox"> When one of us cries, the other listens first and fixes later.</label>
+    <label><input type="checkbox"> Whatever the result, we celebrate how hard we tried.</label>
+  </div>
+  <p id="pdone" hidden></p>
+</section>
+
+<section class="band after" id="ask">
+  <h2>Will you do another year with me? 💞</h2>
+  <div class="btns"><button id="yes">Yes</button><button id="no">No</button></div>
+  <p id="done" hidden></p>
+</section>
+
+<footer class="after"><div class="cute" aria-hidden="true">🐻🌷🐥</div><p>Made with love, for the one I'd choose again.</p></footer>
+
+<script>
+const TO='Kunjathuuu', FROM='Kichuuuu';
+const START=new Date(2025,9,12), UNLOCK=new Date(2026,9,12);
+const preview=false;
+const calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s);
+const LETTER=
+`Dear ${TO} 🥺💗,
+
+One whole year of us, and I still smile like a fool when your name pops up on my phone. 🌸
+
+Thank you for being the softest place I know. You have seen me cry, really cry, and you never once made me feel small. You just stayed, and somehow that was always enough. 🥹 I have seen your tears too, and every time I wished I could take the hurt away and carry it myself. 🫂
+
+We calm each other down on the worst nights. You with your voice, me with my silly jokes, and the world gets quieter every time. 🌙 That's the thing about us: we don't make each other's life louder, we make it calmer.
+
+I know these months are heavy for both of us. JEE, boards, endless chapters, the fear of not being enough. 📚😮‍💨 But look at everything we have already survived. Every tear, every bad day, we got through it together. 💪 This is just one more mountain, and I'll be climbing it right next to you, holding your hand the whole way. 🤍
+
+On the days you doubt yourself, remember that I believe in you more than you will ever know. 🌟 You are not behind and you are not failing. You are my brave girl, working so hard. ✨
+
+Whatever the results are, you are my favourite person. Always. 🧸
+
+Happy first anniversary, my love. Here's to a thousand more. 💞
+
+Always yours,
+${FROM} 🫶`;
+
+const unlocked=()=>preview||Date.now()>=UNLOCK;
+function parts(ms){const s=Math.max(0,Math.floor(ms/1e3));return[Math.floor(s/86400),Math.floor(s%86400/3600),Math.floor(s%3600/60),s%60]}
+function paint(el,p){const L=['days','hours','minutes','seconds'];el.innerHTML=p.map((v,i)=>`<div><b>${String(v).padStart(2,'0')}</b><span>${L[i]}</span></div>`).join('')}
+
+let ready=false;
+function showReady(){
+  ready=true;
+  $('#sub').textContent='';
+  $('#title').textContent=`Hi ${TO}. I made you something. 🧸`;
+  $('#cd').hidden=true;$('#open').hidden=false;
+}
+if(unlocked())showReady();
+else{$('#sub').textContent='Your surprise opens on 12 October 💌';$('#title').textContent=`Not yet, ${TO}.`}
+function tick(){
+  const n=Date.now();
+  if(!unlocked())paint($('#cd'),parts(UNLOCK-n));
+  else if(!ready)showReady();
+  paint($('#since'),parts(n-START));
+}
+tick();setInterval(tick,1000);
+
+const c=$('#sky'),g=c.getContext('2d');
+let W,H,P=[],F=[],gold,rose;
+function colors(){const s=getComputedStyle(document.documentElement);gold=s.getPropertyValue('--gold').trim();rose=s.getPropertyValue('--rose').trim()}
+colors();matchMedia('(prefers-color-scheme: light)').addEventListener('change',colors);
+function size(){const d=devicePixelRatio||1;W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;g.setTransform(d,0,0,d,0,0)}
+addEventListener('resize',size);size();
+const sp=calm?0:1;
+for(let i=0;i<220;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25*sp,vy:(-Math.random()*.3-.05)*sp,r:Math.random()*1.6+.6,tx:null,ty:null,a:Math.random()*.6+.3,h:Math.random()<.4});
+function makeHeart(){
+  const s=Math.min(W/40,H/45),cy=H*.3;
+  P.forEach((p,i)=>{
+    const t=i/P.length*Math.PI*2,k=.9+Math.random()*.2;
+    p.tx=W/2+16*Math.pow(Math.sin(t),3)*s*k;
+    p.ty=cy-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*s*k;
+  });
+}
+function release(){P.forEach(p=>{p.tx=null;p.vx=(Math.random()-.5)*.6*sp;p.vy=(-Math.random()*.4-.05)*sp})}
+function burst(x,y,n){for(let i=0;i<n;i++)F.push({x,y,vx:(Math.random()-.5)*9,vy:-Math.random()*13-4,a:1,c:Math.random()<.5?rose:gold})}
+function frame(){
+  g.clearRect(0,0,W,H);
+  for(const p of P){
+    if(p.tx!==null){p.x+=(p.tx-p.x)*.05;p.y+=(p.ty-p.y)*.05}
+    else{p.x+=p.vx;p.y+=p.vy;if(p.y<-5)p.y=H+5;if(p.x<-5)p.x=W+5;if(p.x>W+5)p.x=-5}
+    g.globalAlpha=p.a;g.fillStyle=p.h?rose:gold;
+    g.beginPath();g.arc(p.x,p.y,p.tx!==null?p.r*1.4:p.r,0,7);g.fill();
+  }
+  g.font='22px serif';g.textAlign='center';
+  F=F.filter(f=>f.a>0.02);
+  for(const f of F){f.vy+=.12;f.x+=f.vx;f.y+=f.vy;f.a-=.006;g.globalAlpha=f.a;g.fillStyle=f.c;g.fillText('♥',f.x,f.y)}
+  g.globalAlpha=1;
+  requestAnimationFrame(frame);
+}
+frame();
+
+const h=$('#hug').getContext('2d');
+let hs=0,hearts=[];
+const px=(c,x,y,w,t)=>{h.fillStyle=c;h.fillRect(Math.round(x),Math.round(y),w,t)};
+function person(x,y,o){
+  const skin='#ffd9b8',ink='#2a1530';
+  px(skin,x+2,y+1,4,3);
+  px(o.hair,x+2,y,4,2);
+  px(o.hair,x+1,y+1,1,o.girl?6:2);px(o.hair,x+6,y+1,1,o.girl?6:2);
+  px(ink,x+3,y+2,1,1);px(ink,x+5,y+2,1,1);
+  if(o.hug){px('#ff8fa3',x+2,y+3,1,1);px('#ff8fa3',x+5,y+3,1,1)}
+  px(o.top,x+2,y+4,4,4);
+  if(o.girl)px(o.top,x+1,y+7,6,2);
+  if(!o.hug){px(o.top,x+1,y+5,1,3);px(o.top,x+6,y+5,1,3)}
+  const ly=y+(o.girl?9:8),n=o.girl?3:4;
+  px(o.legs,x+2,ly,1,o.step?n:n-1);px(o.legs,x+5,ly,1,o.step?n-1:n);
+}
+function heartPx(x,y){[[1,0],[3,0],[0,1],[1,1],[2,1],[3,1],[4,1],[0,2],[1,2],[2,2],[3,2],[4,2],[1,3],[2,3],[3,3],[2,4]].forEach(([a,b])=>px('#ff5c8a',x+a,y+b,1,1))}
+function hugFrame(){
+  h.clearRect(0,0,64,32);
+  const s=hs%90,hug=s>=30,w=Math.min(s,30);
+  px('#6bbf6b',0,28,64,1);px('#4a9a52',0,29,64,3);
+  const bx=Math.round(6+w*.6),gx=Math.round(50-w*.7),y=16-(hug&&s%8<4?1:0);
+  person(gx,y,{hair:'#3b2a2a',top:'#ff8fb1',legs:'#f6d6dd',girl:1,hug,step:s%2});
+  person(bx,y,{hair:'#2a2a3b',top:'#6fa8ff',legs:'#3a4a7a',girl:0,hug,step:s%2});
+  if(hug){px('#4f86e0',bx+3,y+5,8,1);px('#ff6f9c',bx+2,y+6,8,1);
+    if(s%5===0)hearts.push({x:26+Math.random()*8,y:y-2});}
+  hearts=hearts.filter(t=>t.y>-5);
+  hearts.forEach(t=>{t.y-=.5;heartPx(Math.round(t.x),Math.round(t.y))});
+  hs++;
+}
+let hugTimer;
+function startHug(){if(calm){hs=40;hugFrame();return}hugTimer=setInterval(hugFrame,130)}
+
+function stickers(){
+  const E=['🧸','🌸','🍓','🐻','🫶','✨','🐥','🍫','💗','🌷','🐰','☁️'],box=$('#stk');
+  for(let i=0;i<14;i++){
+    const s=document.createElement('span');s.textContent=E[i%E.length];
+    s.style.left=Math.random()*94+'%';
+    if(calm)s.style.top=Math.random()*90+'%';
+    else{s.style.top='105vh';s.style.animationDuration=18+Math.random()*18+'s';s.style.animationDelay=-Math.random()*30+'s'}
+    box.appendChild(s);
+  }
+}
+
+$('#open').addEventListener('click',()=>{
+  document.body.classList.add('opened');
+  $('#open').hidden=true;
+  $('#music-btn').hidden=false;
+  $('#sub').textContent='12 October 2025 to 12 October 2026';
+  $('#title').textContent=`One year, ${TO}. 💞`;
+  scrollTo({top:0});
+  makeHeart();stickers();startHug();
+  initSigCanvas();
+  setTimeout(release,calm?3000:7000);
+});
+
+/* --- JAR OF MEMORIES LOGIC --- */
+const MEMORIES = [
+  "Late Night Study Calls 📚: Staying on call late just so neither of us had to face the quiet alone.",
+  "The Magic Voice 🌙: How one single sentence from you can turn my worst day completely around.",
+  "Safe Harbor 🫂: Every time you listened to me vent without judgment and held space for my tears.",
+  "Unstoppable Laughs 😊: All those ridiculous inside jokes that nobody else in the world will ever get.",
+  "Holding Hands Through Pressure 🤍: Facing endless chapters, exam stress, and doubts, but doing it together.",
+  "Future Dreams ✨: Looking forward to the moment all these exams are over and we can finally celebrate properly.",
+  "Home in You 🏡: Realizing that wherever you are, that's where I feel safest."
+];
+let lastMemIdx = -1;
+function pullMemory(){
+  let idx;
+  do { idx = Math.floor(Math.random() * MEMORIES.length); } while (idx === lastMemIdx);
+  lastMemIdx = idx;
+
+  const jar = $('#memory-jar');
+  const disp = $('#memory-display');
+
+  disp.classList.remove('show');
+
+  const rect = jar.getBoundingClientRect();
+  burst(rect.left + rect.width / 2, rect.top, 25);
+
+  setTimeout(() => {
+    disp.textContent = MEMORIES[idx];
+    disp.classList.add('show');
+  }, 200);
+}
+$('#memory-jar').addEventListener('click', pullMemory);
+$('#jar-btn').addEventListener('click', pullMemory);
+
+/* --- PINKY PROMISE SIGNATURE PAD LOGIC --- */
+let sigCanvas, sigCtx, isDrawing = false, hasSigned = false, promiseSealed = false;
+function initSigCanvas(){
+  sigCanvas = $('#sig-canvas');
+  if(!sigCanvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  const rect = sigCanvas.getBoundingClientRect();
+  sigCanvas.width = rect.width * dpr;
+  sigCanvas.height = rect.height * dpr;
+  sigCtx = sigCanvas.getContext('2d');
+  sigCtx.scale(dpr, dpr);
+  sigCtx.lineWidth = 3;
+  sigCtx.lineCap = 'round';
+  sigCtx.lineJoin = 'round';
+  sigCtx.strokeStyle = rose || '#f08fa3';
+
+  const getPos = (e) => {
+    const r = sigCanvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: clientX - r.left, y: clientY - r.top };
+  };
+
+  const startDraw = (e) => {
+    if(promiseSealed) return;
+    isDrawing = true;
+    hasSigned = true;
+    const p = getPos(e);
+    sigCtx.beginPath();
+    sigCtx.moveTo(p.x, p.y);
+  };
+
+  const draw = (e) => {
+    if(!isDrawing || promiseSealed) return;
+    const p = getPos(e);
+    sigCtx.lineTo(p.x, p.y);
+    sigCtx.stroke();
+  };
+
+  const stopDraw = () => { isDrawing = false; };
+
+  sigCanvas.addEventListener('mousedown', startDraw);
+  sigCanvas.addEventListener('mousemove', draw);
+  sigCanvas.addEventListener('mouseup', stopDraw);
+  sigCanvas.addEventListener('mouseleave', stopDraw);
+
+  sigCanvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDraw(e); }, {passive: false});
+  sigCanvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); }, {passive: false});
+  sigCanvas.addEventListener('touchend', stopDraw);
+}
+
+$('#sig-clear').addEventListener('click', () => {
+  if(!sigCtx || promiseSealed) return;
+  sigCtx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
+  hasSigned = false;
+  $('#sig-status').textContent = 'Sign inside the box to lock in our promise...';
+});
+
+$('#sig-seal').addEventListener('click', () => {
+  if(!hasSigned && !promiseSealed){
+    $('#sig-status').textContent = 'Draw something in the box first! ✍️';
+    return;
+  }
+  if(promiseSealed) return;
+  promiseSealed = true;
+
+  const rect = sigCanvas.getBoundingClientRect();
+  sigCtx.font = '24px Caveat, cursive';
+  sigCtx.fillStyle = gold || '#f3cf8a';
+  sigCtx.textAlign = 'right';
+  sigCtx.fillText('SEALED 🤙✨', rect.width - 15, rect.height - 15);
+
+  $('#sig-status').textContent = `Promise sealed forever with ${TO}! 🤙💖✨`;
+  $('#sig-seal').disabled = true;
+  $('#sig-clear').disabled = true;
+
+  const bRect = $('#sig-seal').getBoundingClientRect();
+  burst(bRect.left + bRect.width / 2, bRect.top, 50);
+});
+
+let typing=false;
+$('#read').addEventListener('click',()=>{
+  if(typing)return;typing=true;
+  const el=$('#letter');el.textContent='';
+  const chars=[...LETTER];
+  if(calm){el.textContent=LETTER;return}
+  let i=0;const id=setInterval(()=>{el.textContent=chars.slice(0,++i).join('');if(i>=chars.length){clearInterval(id);typing=false}},30);
+});
+
+const B=['You have survived 100% of your hardest days so far. 🌟','Rest is part of studying. Drink some water, my love. 💧','One chapter at a time. I am right here. 🫶','Your worth is not a rank or a percentage. 🤍','A bad day is not a bad future. Tomorrow we try again. 🌅','Call me if you need to cry. I will stay on the line. 📞','I am proud of you. Always. 🧸'];
+let bi=-1;
+$('#bbtn').addEventListener('click',()=>{let n;do{n=Math.floor(Math.random()*B.length)}while(n===bi);bi=n;$('#boost').textContent=B[n]});
+
+const boxes=[...document.querySelectorAll('.promises input')];
+boxes.forEach(b=>b.addEventListener('change',()=>{
+  if(boxes.every(x=>x.checked)){const d=$('#pdone');d.hidden=false;d.textContent='Promises made. Now go get it, together. 💪🌸';burst(W/2,H*.7,90)}
+}));
+
+const yes=$('#yes'),no=$('#no');let scale=1;
+function dodge(e){
+  e.preventDefault();
+  const r=no.getBoundingClientRect();
+  no.style.position='fixed';
+  no.style.left=Math.random()*(W-r.width-20)+10+'px';
+  no.style.top=Math.random()*(H-r.height-20)+10+'px';
+  scale=Math.min(scale+.15,2);yes.style.transform=`scale(${scale})`;
+}
+no.addEventListener('pointerenter',dodge);
+no.addEventListener('pointerdown',dodge);
+no.addEventListener('click',dodge);
+yes.addEventListener('click',()=>{
+  no.hidden=true;yes.hidden=true;
+  const d=$('#done');d.hidden=false;d.textContent=`Then it's settled. Happy first anniversary, ${TO}. Love, ${FROM}. 💞`;
+  burst(W/2,H*.75,140);
+});
+
+let bearClicks=0;
+document.addEventListener('click',(e)=>{
+  if(e.target && e.target.id === 'bear-click'){
+    bearClicks++;
+    if(bearClicks===5){
+      alert(`Secret Note: You are doing amazing, ${TO}. I love you so much! ✨`);
+      bearClicks=0;
+    }
+  }
+});
+
+let audioCtx=null,isPlaying=false,noteIndex=0,timerId=null;
+const notes=[261.63, 329.63, 392.00, 523.25, 392.00, 329.63];
+$('#music-btn').addEventListener('click',()=>{
+  if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  if(isPlaying){
+    clearInterval(timerId);
+    isPlaying=false;
+    $('#music-btn').textContent='🎵 Play Soft Melody';
+  } else {
+    isPlaying=true;
+    $('#music-btn').textContent='⏸️ Pause';
+    timerId=setInterval(()=>{
+      const osc=audioCtx.createOscillator();
+      const gain=audioCtx.createGain();
+      osc.type='sine';
+      osc.frequency.setValueAtTime(notes[noteIndex], audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.8);
+      noteIndex=(noteIndex+1)%notes.length;
+    },500);
+  }
+});
+</script>
+</body>
+</html>
